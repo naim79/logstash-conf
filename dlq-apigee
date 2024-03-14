@@ -1,0 +1,21 @@
+input {
+    dead_letter_queue {
+        path => "/var/lib/logstash/dead_letter_queue"
+        pipeline_id => "main"
+        commit_offsets => true
+    }
+}
+
+filter{
+
+}
+
+output{
+    elasticsearch {
+        hosts => ["https://localhost:9200"]
+        user => "elastic"
+        password => "XXXXXXXXXXXXXXX"
+        ssl_certificate_verification => false
+        index => "dead-letter-queue-apigee"
+    }
+}
